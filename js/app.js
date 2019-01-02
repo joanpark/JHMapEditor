@@ -345,7 +345,10 @@ const Editor = {
             return;
         }
 
-        const parsed = JSON.parse(worldStr);
+        const dePrettified = worldStr.replace(/\s/g, '').replace(/\n/, '');
+        console.log(dePrettified);
+        
+        const parsed = JSON.parse(dePrettified);
 
         console.log('importing...');
 
