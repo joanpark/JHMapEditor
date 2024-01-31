@@ -51,6 +51,8 @@ const Pattern = {
         this.startTileIdx   = reducedData[0];
         this.endTileIdx     = reducedData[(reducedData.length - 1)];
 
+        if( this.sprite == undefined ) return;
+
         // based on the atlas' dimensions, figure out the rows and columns from the start and end tiles provided.
         const { row: row1, col: col1 }  = this.sprite.idxToCell(this.startTileIdx);
         const { row: row2, col: col2 }  = this.sprite.idxToCell(this.endTileIdx);

@@ -29,12 +29,13 @@ const CONFIG = {
 
     tilesets: [
         { "name": "overworld-terrain",  "src": "overworld-terrain.png" },
+        /*
         { "name": "overworld-cliffs",   "src": "overworld-cliffs.png" },
         { "name": "overworld-flora",    "src": "overworld-flora.png" },
         { "name": "water",              "src": "water.png" },
         { "name": "misc",               "src": "misc.png" },
         { "name": "caves",              "src": "caves.png" },
-        { "name": "dungeon",            "src": "dungeon.png" },
+        { "name": "dungeon",            "src": "dungeon.png" },*/
     ],
 
     patterns: [
