@@ -1,3 +1,6 @@
+# Tutorials:
+https://gablaxian.com/articles/creating-a-game-with-javascript/introduction/
+
 # Super JS Adventure Tile Editor
 
 A fairly basic tile editor built specifically to create maps for [Super JS Adventure](https://github.com/gablaxian/super-js-adventure)
