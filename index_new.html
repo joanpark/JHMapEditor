@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="public/css/main.css">    
 </head>
 <body>
     
@@ -20,17 +22,23 @@
     ********************************
     -->
 
+    <!-- Helpers -->
+    <script src="src/helpers.js"></script>    
+
     <!-- DB -->
     <script src="src/lib/db.js"></script>
 
     <!-- Engine -->
     <script src="src/lib/layer.js"></script>
-    <script src="src/lib/gamemap.js"></script>    
+    <script src="src/lib/gamemap.js"></script>
+    <script src="src/lib/viewport.js"></script>    
 
+    <!-- App -->    
+    <script src="src/_config.js"></script>
     <script src="src/app.js"></script>
     <script>
         // Begin!
-        App.init({});
+        App.init(CONFIG);
     </script>   
 </body>
 </html>

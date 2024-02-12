@@ -37,4 +37,24 @@ const GameMap = {
 
         this.layers.push(layer);
     },    
+
+    setup(){
+        // store the map pixel dimensions
+        this.WIDTH          = this.TILES_WIDE * Global.TILE_SIZE;
+        this.HEIGHT         = this.TILES_HIGH * Global.TILE_SIZE; 
+        this.selectedLayer  = 0;
+        
+        // setup the layers
+        for (var layer of this.layers) {
+            layer.createCanvas();
+        }
+    },
+
+    render(){
+
+    },
+
+    renderTile(cell){
+        this.layers[this.selectedLayer].renderTile(cell)
+    }
 }

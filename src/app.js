@@ -72,6 +72,9 @@ const App = {
     async initMap() {
         const result = await DB.getItem('world')
 
+        let world   = {}
+        world.maps  = []
+
         // TODO : level data found. Load it.
         if( result !== undefined ) {
             console.log('world db found')
