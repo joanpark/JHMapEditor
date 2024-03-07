@@ -3,18 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JHMapEditor</title>
 
     <link rel="stylesheet" type="text/css" href="public/css/main.css">    
+    <link rel="stylesheet" type="text/css" href="public/css/sidebar.css">    
+    <link rel="stylesheet" type="text/css" href="public/css/toolbar.css">    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
 </head>
 <body>
     
     <main>
+
+        <ul>
+            <li><a class="active" href="#home"><i class="fa fa-map-o"></i></a></li>
+            <li><a href="#file">File</a></li>
+            <li><a href="#edit">Edit</a></li>
+            <li><a href="#help">Help</a></li>
+        </ul>
+
         <section class="Screen">
             <div class="Viewport"></div>
         </section>
 
         <!-- TODO : [중요] 02 오른쪽 UI 구현 -->
+        <section class="Sidebar">
+
+            <div class="Panels">
+                <!-- Info & Controls -->
+                <div class="Panel InfoPanel">
+                    <div class="PanelHeader">Controls</div>
+                    <div class="InfoPanel-container">
+                        <span class="Button Button--small fill">fill</span>
+                        <span class="Button Button--small delete">erase</span>
+                        <div style="float: right">
+                            <span class="Button Button--small save">save</span>
+                            <span class="Button Button--small load">load</span>
+                            <span class="Button Button--small export">export</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>        
 
     </main>
 

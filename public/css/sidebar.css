@@ -1,0 +1,63 @@
+/** Sidebar **/
+
+.Sidebar {
+    background-color: #efefef;
+    color: #222;
+    flex: 0 0 var(--sidebar-width);
+    height: var(--body-height);
+    width: var(--sidebar-width);
+    box-shadow: -3px 0px 10px rgba(0,0,0,0.2);
+    z-index: 5;
+}
+.Panels {
+    display: flex;
+    flex-direction: column;
+    height: var(--body-height);
+}
+
+.PanelHeader {
+    background-color: #333;
+    border-top: 1px solid #fafafa;
+    color: #fff;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 4px;
+    text-transform: uppercase;
+}
+
+.Panels > div:first-child .PanelHeader {
+    border-top: none;
+}
+
+.Button {
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    padding: 0.3rem 0.4rem;
+}
+.Button--small {
+    font-size: 11px;
+    padding: 4px;
+}
+.Button:hover {
+    border: 1px solid #444;
+}
+.Button:active {
+    background-color: #eee;
+}
+.Button.isActive {
+    background-color: #444;
+    border-color: #111;
+    color: #fff;
+}
+
+/** info **/
+
+.InfoPanel {
+    flex-shrink: 1;
+    position: relative;
+    top: var(--toolbar-height);
+}
