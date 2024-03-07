@@ -26,3 +26,8 @@
     position: relative;
     left: 30vw;
   }
+
+  .logo{
+    padding-bottom: 10px !important; 
+    padding-top: 8px !important;
+  }
