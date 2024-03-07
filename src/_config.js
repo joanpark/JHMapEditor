@@ -10,7 +10,7 @@ const CONFIG = {
     // the customisable tileset layers.
     // Required layers like collisions and entities are added automatically
     layers: [
-        { "name": "bg" },
+        { "name": "bg"},
         { "name": "world" },
         { "name": "entities" },
         { "name": "top" },

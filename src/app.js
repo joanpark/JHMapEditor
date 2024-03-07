@@ -35,6 +35,7 @@ const App = {
         Global.DEFAULT_ROOM_W   = 32
         Global.DEFAULT_ROOM_H   = 22
         Global.TILE_SIZE        = config.tile_size  || 16
+        Global.scale            = config.scale      || 3
         Global.assetPath        = config.asset_path || ''
 
         Global.world            = {}

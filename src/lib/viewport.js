@@ -9,7 +9,8 @@ const Viewport = {
         // elements
         this._viewport      = _('.Viewport');
 
-        // TODO : setup grids
+        this.grid = Object.create(Grid)
+        this.grid.init(0, 0, Global.TILE_SIZE, Global.TILE_SIZE)
 
         // set the current map to the first map
         // setup the map’s visual properties
@@ -18,8 +19,10 @@ const Viewport = {
 
         // add layers
         for (const layer of this.currentMap.layers) {
-            this._viewport.appendChild(layer.canvas);
+            this._viewport.appendChild(layer.canvas)
         }
+
+        this._viewport.appendChild(this.grid.canvas)
 
         // events
         this.setupEvents()
@@ -31,6 +34,9 @@ const Viewport = {
         this.currentMap = map
         this.currentMap.setup()
 
+        this.grid.resize(this.currentMap.getWidthInPx(), this.currentMap.getHeightInPx())
+
+        this.scale(Global.scale)
         this.render()
     },
 
@@ -50,6 +56,18 @@ const Viewport = {
         })        
     },
 
+    scale(scale){
+        this._scale = scale
+
+        this.currentMap.scale(scale)
+
+        this.grid.scale(scale)
+        this.grid.render()
+
+        this._viewport.style['width']   = (this.currentMap.getWidthInPx() * scale) + 'px'
+        this._viewport.style['height']  = (this.currentMap.getHeightInPx() * scale) + 'px'
+    },
+
     render(){
         Debug.log(`-- Viewport.render --`, LogCat.FLOW)
 
@@ -57,7 +75,7 @@ const Viewport = {
 
         this.currentMap.render()
 
-        // TODO : render grid
+        this.grid.render()
 
         const endTime = window.performance.now();
 

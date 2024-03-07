@@ -59,8 +59,27 @@ const GameMap = {
         }
     },
 
+    getWidthInPx() {
+        return this.WIDTH;
+    },
+
+    getHeightInPx() {
+        return this.HEIGHT;
+    },
+
+    scale(scale) {
+        this._scale = scale;
+        for (var layer of this.layers) {
+            layer.scale(scale)
+        }
+    },
+
     render(){
         Debug.log(`-- GameMap.render --`, LogCat.FLOW)
+
+        for(var layer of this.layers) {
+            layer.render();
+        }
     },
 
     renderTile(cell){

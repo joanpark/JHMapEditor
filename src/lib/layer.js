@@ -68,7 +68,7 @@ const Layer = {
 
         Debug.log(`-- Layer.renderTile --`, LogCat.FLOW)
 
-        // TODO : [중요] layer renderTile 함수 구현
+        // TODO : [중요] 2 layer renderTile 함수 구현
 
         // There are two tile types, normal and collision. Collision is currently not an image, so is drawn differently.
         if( this.name != 'collision' ) {
@@ -79,5 +79,38 @@ const Layer = {
         else {
             
         }        
+    },
+
+    scale(scale) {
+        this._scale = scale
+        this.canvas.style['width']  = (this.WIDTH * scale) +'px'
+        this.canvas.style['height'] = (this.HEIGHT * scale) +'px'
+    },    
+
+    render(){
+        // TODO : [중요] 1 layer render 함수 구현
+
+        // clear the whole layer
+        this.context.clearRect(0, 0, this.WIDTH, this.HEIGHT)
+
+        // get the tile index and its tileset.
+        let tile            = 0
+        let tileset         = ''
+
+        let coords          = {}
+        let sprite          = {}
+        let spriteCoords    = {}
+
+        for(var cell = 0; cell < this.data.length; cell++) {
+
+            if( this.name === 'entities' ) {
+                // TODO : renderEntity 
+            }
+            else{
+
+
+
+            }
+        }
     }
 }
