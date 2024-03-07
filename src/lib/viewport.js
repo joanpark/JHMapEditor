@@ -7,8 +7,18 @@ const Viewport = {
         Debug.log(`-- Viewport.setup --`, LogCat.FLOW)
 
         // elements
-        this._viewport      = _('.Viewport');
+        this._viewport      = _('.Viewport')
 
+        // states
+        this.mouseX = 0
+        this.mouseY = 0
+
+        //
+        this.startCell      = null;
+        this.endCell        = null;
+
+
+        // setup grid
         this.grid = Object.create(Grid)
         this.grid.init(0, 0, Global.TILE_SIZE, Global.TILE_SIZE)
 
@@ -44,15 +54,22 @@ const Viewport = {
 
         Debug.log(`-- Viewport.setupEvents --`, LogCat.FLOW)
 
-        // TODO : [중요] 마우스 클릭시, map renderTile 구현
+        // TODO : [중요] 01 마우스 클릭시, map renderTile 구현
 
         this._viewport.addEventListener('mouseup', () => {
         })
 
         this._viewport.addEventListener('mousedown', () => {
+
+            this.startCell      = this.getClickedCell()
+            this.currentCell    = this.getClickedCell()
+
+            this.placePattern()
         })
 
         this._viewport.addEventListener('mousemove', (e) => {
+            this.mouseX = e.offsetX
+            this.mouseY = e.offsetY
         })        
     },
 
@@ -66,6 +83,16 @@ const Viewport = {
 
         this._viewport.style['width']   = (this.currentMap.getWidthInPx() * scale) + 'px'
         this._viewport.style['height']  = (this.currentMap.getHeightInPx() * scale) + 'px'
+    },
+
+    getClickedCell() {
+        return this.currentMap.pxToCell( (this.mouseX / this._scale), (this.mouseY / this._scale) )
+    },
+
+    placePattern() {
+        const cell = this.getClickedCell()
+
+        this.currentMap.addPattern(cell)
     },
 
     render(){

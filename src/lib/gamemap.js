@@ -67,6 +67,22 @@ const GameMap = {
         return this.HEIGHT;
     },
 
+    pxToCell(x, y) {
+        let row = Math.floor( (y / this.HEIGHT) * this.TILES_HIGH );
+        let col = Math.floor( (x / this.WIDTH) * this.TILES_WIDE );
+
+        return (row * this.TILES_WIDE) + col;
+    },
+
+    addPattern(cell){
+        var layer = this.layers[this.selectedLayer]
+
+        let tileIndex = 0
+
+        layer.addTile(cell, tileIndex, "room_builder_floors")
+        layer.renderTile(cell)
+    },
+
     scale(scale) {
         this._scale = scale;
         for (var layer of this.layers) {

@@ -35,14 +35,16 @@ const App = {
         Global.DEFAULT_ROOM_W   = 32
         Global.DEFAULT_ROOM_H   = 22
         Global.TILE_SIZE        = config.tile_size  || 16
-        Global.scale            = config.scale      || 3
+        Global.scale            = config.scale      || 2
         Global.assetPath        = config.asset_path || ''
 
         Global.world            = {}
+        Global.tilesetsArray    = [] // array of Sprite objects        
          
         // some initialization stuff
         this.maps               = config.maps       || [{ "name": "default", "width": Global.DEFAULT_ROOM_W, "height": Global.DEFAULT_ROOM_H }]
         this.layers             = config.layers     || [{ "name": "bg" }]
+        this.tilesets           = config.tilesets   || []        
 
         // construct the internal data structure
         Global.world.maps = [];
@@ -64,10 +66,29 @@ const App = {
         // load all the things!
         Debug.init()
         await DB.init('JHMapEditor', 1, 'world')
+        await this.loadAssets()
         await this.initMap() // init map -> init layer
         Viewport.setup() // setup map -> setup layer
 
         Debug.log(`-- end of App.init --`, LogCat.FLOW)
+    },
+
+    /**
+     * Loops through the provided list of assets and loads them into memory.
+     * Returns a promise.
+     */
+    loadAssets() {
+        const promises = [];
+
+        // loop through the provided tilesetsand create an array of promises
+        for (const tileset of this.tilesets) {
+            const sprite = Object.create(Sprite);
+            Global.tilesetsArray.push(sprite);
+
+            promises.push(sprite.init(tileset.name, Global.assetPath + tileset.src));
+        }
+
+        return Promise.all(promises);
     },
 
     /**

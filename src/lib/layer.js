@@ -64,11 +64,23 @@ const Layer = {
 
     },
 
+    cellToPx(cell) {
+        return {
+            x: (cell % this.TILES_WIDE) * Global.TILE_SIZE,
+            y: Math.floor(cell / this.TILES_WIDE) * Global.TILE_SIZE
+        }
+    },
+
+    addTile(cell, tileIndex, tilesetName) {
+        this.tilesetNames[cell] = tilesetName;
+        this.data[cell]         = tileIndex;
+    },
+
     renderTile(cell, clear=true){
 
         Debug.log(`-- Layer.renderTile --`, LogCat.FLOW)
 
-        // TODO : [중요] 2 layer renderTile 함수 구현
+        // TODO : [중요] 12 layer renderTile 함수 구현
 
         // There are two tile types, normal and collision. Collision is currently not an image, so is drawn differently.
         if( this.name != 'collision' ) {
@@ -87,8 +99,37 @@ const Layer = {
         this.canvas.style['height'] = (this.HEIGHT * scale) +'px'
     },    
 
+    renderTile(cell, clear=true) {
+        // get the tile index and its tileset.
+        const tile      = this.data[cell]
+        const tileset   = this.tilesetNames[cell]
+
+        // get the tile’s pixel coords.
+        const coords    = this.cellToPx(cell);
+
+        // clear the cell first. Under a flag, so that we can use this function in `render()` and do one clear first.
+        if( clear ) {
+            this.context.clearRect(coords.x, coords.y, Global.TILE_SIZE, Global.TILE_SIZE);
+        }
+
+        // if there is no tile (or it was just deleted) then do nothing.
+        if( tile === null ) {
+            return;
+        }
+
+        const sprite = Utils.getTilesetByName(tileset);
+
+        // There are two tile types, normal and collision. Collision is currently not an image, so is drawn differently.
+        if( this.name != 'collision' ) {
+            const spriteCoords = sprite.cellToPx(tile);
+
+            this.context.drawImage(sprite.img, spriteCoords.x, spriteCoords.y, Global.TILE_SIZE, Global.TILE_SIZE, coords.x, coords.y, Global.TILE_SIZE, Global.TILE_SIZE);
+        }
+
+    },
+
     render(){
-        // TODO : [중요] 1 layer render 함수 구현
+        // TODO : [중요] 11 layer render 함수 구현
 
         // clear the whole layer
         this.context.clearRect(0, 0, this.WIDTH, this.HEIGHT)
