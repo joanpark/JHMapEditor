@@ -3,6 +3,9 @@
 const DB = {
 
     async init(dbName = 'db', version = 1, storeName = 'store') {
+
+        Debug.log(`-- DB.init --`, LogCat.FLOW)
+
         // config
         this.dbName     = dbName;
         this.dbVersion  = version;
@@ -14,12 +17,12 @@ const DB = {
             let request = indexedDB.open(this.dbName, this.dbVersion);
 
             request.onerror = () => {
-                console.log(`failed to load DB: ${this.dbName}`);
+                Debug.log(`failed to load DB: ${this.dbName}`);
                 reject();
             }
             request.onsuccess = (event) => {
                 this.db = event.target.result;
-                console.log(`successfully connected to DB: ${this.dbName}`);
+                Debug.log(`successfully connected to DB: ${this.dbName}`);
                 resolve();
             }
             request.onupgradeneeded = (event) => {
@@ -42,7 +45,7 @@ const DB = {
             let request = store.put(value, key);
 
             request.onsuccess = () => {
-                console.log('DB saved!');
+                Debug.log('DB saved!');
                 resolve();
             }
             request.onerror = () => {

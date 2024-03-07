@@ -22,6 +22,9 @@
 const Layer = {
 
     init(name, tilesWide, tilesHigh, tilesetNames, data) {
+
+        Debug.log(`     -- Layer.init --`, LogCat.FLOW)
+
         this.name           = name                             // name of the layer
         this.tilesetNames   = tilesetNames  || new Array()     // array of the tileset names per cell
         this.data           = data          || new Array()     // The layer’s data. Could be the tileset indexes, the collision type indexes, or entity objects, or whatever!
@@ -34,6 +37,9 @@ const Layer = {
     },
 
     createCanvas(){
+
+        Debug.log(`     -- Layer.createCanvas --`, LogCat.FLOW)
+
         // store the map pixel dimensions
         this.WIDTH          = this.TILES_WIDE * Global.TILE_SIZE
         this.HEIGHT         = this.TILES_HIGH * Global.TILE_SIZE  
@@ -59,6 +65,9 @@ const Layer = {
     },
 
     renderTile(cell, clear=true){
+
+        Debug.log(`-- Layer.renderTile --`, LogCat.FLOW)
+
         // TODO : [중요] layer renderTile 함수 구현
 
         // There are two tile types, normal and collision. Collision is currently not an image, so is drawn differently.

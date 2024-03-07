@@ -4,6 +4,8 @@ const Viewport = {
 
     setup(){
 
+        Debug.log(`-- Viewport.setup --`, LogCat.FLOW)
+
         // elements
         this._viewport      = _('.Viewport');
 
@@ -24,6 +26,8 @@ const Viewport = {
     },
 
     setupMap(map){
+        Debug.log(`-- Viewport.setupMap --`, LogCat.FLOW)
+
         this.currentMap = map
         this.currentMap.setup()
 
@@ -31,6 +35,8 @@ const Viewport = {
     },
 
     setupEvents(){
+
+        Debug.log(`-- Viewport.setupEvents --`, LogCat.FLOW)
 
         // TODO : [중요] 마우스 클릭시, map renderTile 구현
 
@@ -45,6 +51,8 @@ const Viewport = {
     },
 
     render(){
+        Debug.log(`-- Viewport.render --`, LogCat.FLOW)
+
         const startTime = window.performance.now()
 
         this.currentMap.render()
@@ -53,6 +61,6 @@ const Viewport = {
 
         const endTime = window.performance.now();
 
-        console.log(`map render time: ${(endTime - startTime)}ms`);
+        Debug.log(`map render time: ${(endTime - startTime)}ms`);
     },
 }

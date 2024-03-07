@@ -12,6 +12,9 @@
 const GameMap = {
 
     init(config = {}, layers=[{name: 'bg'}]){
+
+        Debug.log(`-- GameMap.init --`, LogCat.FLOW)
+
         //
         this.name           = config.name       || '';
         this.TILES_WIDE     = config.width      || Global.DEFAULT_ROOM_W; // default: one room wide
@@ -30,6 +33,9 @@ const GameMap = {
     },
 
     initLayer(name, tilesetNames, data) {
+
+        Debug.log(`     -- GameMap.initLayer --`, LogCat.FLOW)
+
         name = name || 'Layer ' + (this.layers.length + 1);
 
         let layer = Object.create(Layer);
@@ -39,6 +45,9 @@ const GameMap = {
     },    
 
     setup(){
+
+        Debug.log(`-- GameMap.setup --`, LogCat.FLOW)
+
         // store the map pixel dimensions
         this.WIDTH          = this.TILES_WIDE * Global.TILE_SIZE;
         this.HEIGHT         = this.TILES_HIGH * Global.TILE_SIZE; 
@@ -51,10 +60,12 @@ const GameMap = {
     },
 
     render(){
-
+        Debug.log(`-- GameMap.render --`, LogCat.FLOW)
     },
 
     renderTile(cell){
+        Debug.log(`-- GameMap.renderTile --`, LogCat.FLOW)
+
         this.layers[this.selectedLayer].renderTile(cell)
     }
 }

@@ -61,15 +61,20 @@ const App = {
         }
 
         // load all the things!
+        Debug.init()
         await DB.init('JHMapEditor', 1, 'world')
         await this.initMap() // init map -> init layer
-        Viewport.setup(); // setup map -> setup layer
+        Viewport.setup() // setup map -> setup layer
+
+        Debug.log(`-- end of App.init --`, LogCat.FLOW)
     },
 
     /**
      * Load map data
      */
     async initMap() {
+        Debug.log(`-- App.initMap --`, LogCat.FLOW)
+
         const result = await DB.getItem('world')
 
         let world   = {}
